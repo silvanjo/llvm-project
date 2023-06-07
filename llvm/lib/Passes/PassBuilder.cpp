@@ -260,6 +260,8 @@
 #include "llvm/Transforms/Vectorize/VectorCombine.h"
 #include <optional>
 
+#include "llvm/Transforms/Utils/NewTestPass.h"
+
 using namespace llvm;
 
 static const Regex DefaultAliasRegex(
