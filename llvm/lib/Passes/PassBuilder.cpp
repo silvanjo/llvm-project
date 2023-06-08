@@ -260,7 +260,9 @@
 #include "llvm/Transforms/Vectorize/VectorCombine.h"
 #include <optional>
 
+// Custom passes
 #include "llvm/Transforms/Utils/NewTestPass.h"
+#include "llvm/Transforms/Utils/BufferMonitorPass.h"
 
 using namespace llvm;
 
