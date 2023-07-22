@@ -8,7 +8,7 @@ namespace llvm {
     class BufferMonitorPass : public PassInfoMixin<BufferMonitorPass> 
     {
     public:
-        PreservedAnalyses run(Module& module, ModuleAnalysisManager& MAM);
+        PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
     };
 
 }; 
