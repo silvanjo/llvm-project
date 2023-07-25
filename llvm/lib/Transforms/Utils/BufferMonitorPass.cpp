@@ -82,7 +82,7 @@ PreservedAnalyses BufferMonitorPass::run(Function &F, FunctionAnalysisManager &A
 
                     // Determine the index of the buffer being accessed
 
-                    Value* indexValue = gepInst->getOperand(1);        // get index value
+                    Value* indexValue = gepInst->getOperand(2);        // get index value
 
                     if (ConstantInt* constInt = dyn_cast<ConstantInt>(indexValue))
                     {
@@ -90,7 +90,7 @@ PreservedAnalyses BufferMonitorPass::run(Function &F, FunctionAnalysisManager &A
                             
                         unsigned index = constInt->getZExtValue();     // get index as an 64-bit usigned integer
 
-                        std::cout << "Index beeing accessed: " << index << std::endl;
+                        std::cout << "Constant index beeing accessed: " << index << std::endl;
 
                         if (index >= bufferMap[bufferName])
                         {
@@ -102,11 +102,13 @@ PreservedAnalyses BufferMonitorPass::run(Function &F, FunctionAnalysisManager &A
                     else 
                     {
                         // This is a non-constant index
+
+                        std::cout << "Non-constant index beeing accessed" << std::endl;
                         
                         if (indexValue->getType()->isIntegerTy())
                         {
                             std::string printLog = "Index being accessed: %d\n";
-                            Value* printLogValue = builder.CreateGlobalStringPtr(printLog);
+                            Value* printLogValue = builder.CreateGlobalStringPtr(printLog, "printLog", 0, module);
 
                             builder.SetInsertPoint(&*I);
 

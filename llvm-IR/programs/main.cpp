@@ -1,26 +1,21 @@
-#include <iostream>
+#include <stdio.h>
 
-int arr1[10] = { 0 };
-int* arr2 = (int*) malloc(10 * sizeof(int));
-
-int SumArray(int* arr, int size)
-{
-    int sum = 0;
-    for (int i = 0; i < size; i++)
-    {
-        sum += arr[i];
+int main() {
+    int buffer1[10];
+    for (int i = 0; i < 10; ++i) {
+        buffer1[i] = i;
     }
 
-    return sum;
-}
+    char buffer2[5] = "test";
+    printf("Buffer2: %s\n", buffer2);
 
-int main()
-{
-    int sum1 = SumArray(arr1, 10);
-    int sum2 = SumArray(arr2, 10);
+    float buffer3[15];
+    for (int i = 0; i < 15; ++i) {
+        buffer3[i] = (float)i / 2;
+    }
 
-    std::cout << "Sum1: " << sum1 << std::endl;
-    std::cout << "Sum2: " << sum2 << std::endl;
+    // Out of bounds access
+    buffer1[10] = 0;
 
     return 0;
 }
