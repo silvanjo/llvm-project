@@ -1,21 +1,36 @@
-#include <stdio.h>
+#include <iostream>
+
+void testBuffer1() {
+    int arr1[10];            // Static buffer allocation
+    for(int i = 0; i < 10; i++) {
+        arr1[i] = i;
+    }
+
+    int index = 7;
+    std::cout << arr1[index] << std::endl;  // Access within bounds
+
+    int *dynamicArr = new int[20];          // Dynamic buffer allocation (Note: your pass might not catch this one as it is heap allocated)
+    dynamicArr[19] = 50;
+    delete[] dynamicArr;
+}
+
+void testBuffer2() {
+    char buffer[5];
+    buffer[4] = 'A';
+
+    int index = 3;
+    std::cout << buffer[index] << std::endl;  // Access within bounds
+}
+
+void testOutOfBounds() {
+    int arr2[8];
+    arr2[10] = 100;          // Out of bounds access
+}
 
 int main() {
-    int buffer1[10];
-    for (int i = 0; i < 10; ++i) {
-        buffer1[i] = i;
-    }
-
-    char buffer2[5] = "test";
-    printf("Buffer2: %s\n", buffer2);
-
-    float buffer3[15];
-    for (int i = 0; i < 15; ++i) {
-        buffer3[i] = (float)i / 2;
-    }
-
-    // Out of bounds access
-    buffer1[10] = 0;
+    testBuffer1();
+    testBuffer2();
+    testOutOfBounds();
 
     return 0;
 }
