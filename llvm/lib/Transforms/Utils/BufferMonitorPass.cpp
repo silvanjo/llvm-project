@@ -105,7 +105,7 @@ PreservedAnalyses BufferMonitorPass::run(Function &F, FunctionAnalysisManager &A
             Function *calledFunc = callInst->getCalledFunction();
 
             if (calledFunc) 
-            { 
+            {
                 StringRef funcName = calledFunc->getName();
                 if (funcName == "malloc" || funcName.startswith("_Znwm") || funcName.startswith("_Znam"))
                 {
@@ -179,7 +179,7 @@ PreservedAnalyses BufferMonitorPass::run(Function &F, FunctionAnalysisManager &A
                         std::cout << "Cannot read getelementptr instruction. Index wrong format." << std::endl;
                     }
 #else
-                    
+
                     if (ConstantInt* constInt = dyn_cast<ConstantInt>(indexValue))
                     {
                         // This is a constant index
@@ -245,3 +245,5 @@ PreservedAnalyses BufferMonitorPass::run(Function &F, FunctionAnalysisManager &A
 
     return PreservedAnalyses::none();
 }
+
+// TODO: free buffer detection
